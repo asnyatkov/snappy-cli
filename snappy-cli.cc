@@ -1,4 +1,4 @@
-include <sys/stat.h>
+#include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,7 +6,9 @@ include <sys/stat.h>
 
 inline bool ends_with(std::string const & value, std::string const & ending)
 {
-    if (ending.size() > value.size()) return false;
+    if (ending.size() > value.size()) {
+        return false;
+    }
     return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
 }
 
@@ -49,8 +51,8 @@ int main(int argc, char** argv)
         printf("Compressed %s size %d to %s size %d\n", argv[1], int(st.st_size), argv[2], int(compressed_len));
     }
 
-    FILE* f = fopen(argv[2], "w");
-    fwrite(output.data(), sizeof(char), output.size(), f);
-    fclose(f);
+    FILE* f2 = fopen(argv[2], "w");
+    fwrite(output.data(), sizeof(char), output.size(), f2);
+    fclose(f2);
     return 0;
 }
